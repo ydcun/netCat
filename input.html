@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>淘宝购物车</title>
+<style type="text/css"> 
+body{
+	font-family:微软雅黑; 
+	font-size:12px;
+}
+td{
+	//border:solid 1px #000000;
+	text-align:center;
+}
+a{
+	text-decoration:none;
+}
+#heads{
+	line-height:20px;
+	height:20px;
+}
+.bodys td{
+	background-color:#E2F2FF;
+}
+.itmhead{
+	margin-left:-666px;
+	height:25px;
+	line-height:25px;
+	margin-top:10px;
+}
+.itmhead img{ 
+	margin-top:-2px;
+	vertical-align:middle;
+}
+.counttext{
+	text-align:center;
+	width:30px;
+	r
+}
+.itmbody{ 
+	width:100%;
+	text-align:left;
+	float:left;
+	padding:5px;
+}
+.itmbody_img{
+	width:80px;
+	float:left;
+}
+.itmbody_font{
+	float:left;
+	width:280px;
+	padding-left:10px;
+	line-height:20px;
+}
+.imgbut{
+	cursor:pointer;
+}
+.moneys{
+	color:#FC7117;
+	font-weight:bold;
+}
+.div{
+	display:block;
+}
+#foot,#foot_2{
+	height:30px;
+	line-height:30px;
+	margin-left:650px;
+	
+}
+#foot_1,#foot_3{
+	margin-left:240px;
+	width:50px;
+	margin-top:-30px;
+	
+	color:#F00;
+	font-size:18px
+}
+#but{
+	margin-left:-900px;
+}
+</style>
+<script language="javascript" type="text/javascript"> 
+function allcheck(){
+	var stra = document.getElementById("allcheck");
+	var ch=document.getElementsByName("checkbox");
+	for(var i=0;i<ch.length;i++){
+		ch[i].checked=stra.checked;
+	}
+}
+function clicks(){
+	var ch=document.getElementsByName("checkbox"); 
+	for(var i=0;i<ch.length;i++){
+		if(ch[i].checked){
+			del(i+1);
+		}
+	}
+}
+function reduce(num){
+	var txt=document.getElementById("txt"+num);
+	if(txt.value=="0")
+		return;
+	txt.value=eval(txt.value+"-1");
+	count(num);
+}
+function adds(num){
+	var txt=document.getElementById("txt"+num);
+	txt.value=eval(txt.value+"+1");
+	count(num);
+}
+function count(num){
+	var units=document.getElementById("unit"+num);
+	var unitsv=units.innerHTML;
+	var txts=document.getElementById("txt"+num);
+	var integral=document.getElementById("integral"+num);
+	var txtsv=txts.value;
+	var reg=/^[-]{0,1}[1-9][0-9]{0,}$/
+	if((!reg.test(txtsv))||txtsv<0){
+		txts.value=0;
+		txtsv=0;
+	}
+	var temp = eval(unitsv+"*"+txtsv+"*100");
+	var temp=parseInt(temp);
+	document.getElementById("moneys"+num).innerHTML=eval(temp+"/"+"100");
+	integral.innerHTML=eval(txtsv+"*5");
+	var  integral=document.getElementsByName("integral");
+	temp=0;
+	for(var i=1;i<5;i++){
+		var integral = document.getElementById("integral"+i);
+		if(integral!=null){
+			temp=eval(integral.innerHTML+"+temp");
+			
+		}document.getElementById("foot_3").innerHTML=temp;
+		
+	}
+	temp=0;
+	for(var i=1;i<5;i++){
+		var moneys = document.getElementById("moneys"+i);
+		if(moneys!=null){
+			temp=eval(moneys.innerHTML+"+temp");
+			
+		}document.getElementById("foot_1").innerHTML=temp;
+		
+	}
+	
+}
+function del(num){
+	document.getElementById("div"+num).style.display="none";
+	document.getElementById("txt"+num).value=0;
+	count(num);
+}
+ 
+</script>
+</head>
+ 
+<body>
+<div id="list" align="center">
+	<table cellpadding="0" cellspacing="1" width="1000">
+		<tr>
+			<td width="80"><div id="heads"><input type="checkbox" id="allcheck" onclick="allcheck();"/>&nbsp;全选</div></td>
+			<td>店铺宝贝</td>
+			<td width="100">获积分</td>
+			<td width="100">单价（元）</td>
+			<td width="120">数量</td>
+			<td width="100">小计（元）</td>
+			<td width="100">操作</td>
+		</tr>
+		<tr height="2"><td colspan="7"><hr size="2" color="#9FC6FF" /></td></tr>
+		
+		</table>
+        <div class="divs" id="div1">
+        <table cellpadding="0" cellspacing="1" width="1000">
+		<!-------------------------------------------------------------->
+		<tr>
+			<td colspan="7">
+				<div class="itmhead" >
+					店铺：<a href="#">乔迁百媚时尚坊</a>&nbsp;卖家：<a href="#">前桥百媚</a><img src="images/taobao_relation.jpg" />
+				</div>	
+			</td>
+		</tr>
+		<tr class="bodys">
+			<td width="80"><input name="checkbox" type="checkbox" /></td>
+			<td>
+				<div class="itmbody">
+					<div class="itmbody_img">
+						<img src="images/taobao_cart_01.jpg" />
+					</div>
+					<div class="itmbody_font">
+						<a href="#">日韩流行疯时尚美眉最爱特米字拼图金属皮跟公主靴子黑色</a>
+						<div class="itmbody_font_type">
+							颜色：棕色  尺码：37<br />
+							保障：<img src="images/taobao_icon_01.jpg" />
+						</div>
+					</div>
+				</div>
+			</td>
+			<td width="100"><div id="integral1">0</div></td>
+			<td width="100"><div id="unit1">138.5</td>
+			<td width="120">
+					<img class="imgbut" src="images/taobao_minus.jpg" onclick="reduce(1);" />
+					<input type="text" id="txt1" class="counttext" onblur="count(1);" value="0"/>
+					<img class="imgbut" src="images/taobao_adding.jpg" onclick="adds(1);"/>
+			</td>
+			<td width="100"><div id="moneys1" class="moneys">0</div></td>
+			<td width="100"><a href="#" onclick="del(1);">删除</a></td>
+		</tr>
+		
+        </table>
+        </div>
+        <div class="divs" id="div2">
+        <table cellpadding="0" cellspacing="1" width="1000">
+				
+		<!-------------------------------------------------------------->
+		<tr>
+			<td colspan="7">
+				<div class="itmhead" >
+					店铺：<a href="#">乔迁百媚时尚坊</a>&nbsp;卖家：<a href="#">前桥百媚</a><img src="images/taobao_relation.jpg" />
+				</div>	
+			</td>
+		</tr>
+		<tr class="bodys">
+			<td width="80"><input name="checkbox" type="checkbox" /></td>
+			<td>
+				<div class="itmbody">
+					<div class="itmbody_img">
+						<img src="images/taobao_cart_01.jpg" />
+					</div>
+					<div class="itmbody_font">
+						<a href="#">日韩流行疯时尚美眉最爱特米字拼图金属皮跟公主靴子黑色</a>
+						<div class="itmbody_font_type">
+							颜色：棕色  尺码：37<br />
+							保障：<img src="images/taobao_icon_01.jpg" />
+						</div>
+					</div>
+				</div>
+			</td>
+			<td width="100"><div id="integral2">0</div></td>
+			<td width="100"><div id="unit2">138.5</td>
+			<td width="120">
+					<img class="imgbut"  src="images/taobao_minus.jpg" onclick="reduce(2);" />
+					<input type="text" id="txt2" class="counttext" onblur="count(2);" value="0"/>
+					<img class="imgbut" src="images/taobao_adding.jpg" onclick="adds(2);"/>
+			</td>
+			<td width="100"><div id="moneys2" class="moneys">0</div></td>
+			<td width="100"><a href="#" onclick="del(2);">删除</a></td>
+		</tr>
+		
+        
+        </table>
+        </div>
+        <div class="divs" id="div3">
+        <table cellpadding="0" cellspacing="1" width="1000">		
+		<!-------------------------------------------------------------->
+		<tr>
+			<td colspan="7">
+				<div class="itmhead" >
+					店铺：<a href="#">乔迁百媚时尚坊</a>&nbsp;卖家：<a href="#">前桥百媚</a><img src="images/taobao_relation.jpg" />
+				</div>	
+			</td>
+		</tr>
+		<tr class="bodys">
+			<td width="80"><input name="checkbox" type="checkbox" /></td>
+			<td>
+				<div class="itmbody">
+					<div class="itmbody_img">
+						<img src="images/taobao_cart_01.jpg" />
+					</div>
+					<div class="itmbody_font">
+						<a href="#">日韩流行疯时尚美眉最爱特米字拼图金属皮跟公主靴子黑色</a>
+						<div class="itmbody_font_type">
+							颜色：棕色  尺码：37<br />
+							保障：<img src="images/taobao_icon_01.jpg" />
+						</div>
+					</div>
+				</div>
+			</td>
+			<td width="100"><div id="integral3">0</div></td>
+			<td width="100"><div id="unit3">138.1</td>
+			<td width="120">
+					<img class="imgbut" src="images/taobao_minus.jpg" onclick="reduce(3);" />
+					<input type="text" id="txt3" class="counttext" onblur="count(3);" value="0"/>
+					<img class="imgbut" src="images/taobao_adding.jpg" onclick="adds(3);"/>
+			</td>
+			<td width="100"><div id="moneys3" class="moneys">0</div></td>
+			<td width="100"><a href="#" onclick="del(3);">删除</a></td>
+		</tr>
+       	</table>
+		</div>
+       <table cellpadding="0" cellspacing="1" width="1000">		
+        <tr>
+        	<td colspan="7">
+            	<div id="but"><input type="button" value="删除所选"   onclick="clicks();"/></div>
+                <div id="foot">商品总价(不包含运费)：<div id="foot_1"></div></div>
+                <div id="foot_2">总积分：<div  id="foot_3"></div></div>
+            </td>
+        </tr>
+		</table>
+</div>
+</body>
+</html>
+
